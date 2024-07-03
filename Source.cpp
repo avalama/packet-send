@@ -58,12 +58,8 @@ int main()
 		cout << "listening kill me" << endl;
 	}
 	SOCKET otBoi;
-	sockaddr_in ava;
-	ava.sin_family = AF_INET;
-	InetPton(AF_INET, _T("127.0.0.1"), &ava.sin_addr.s_addr);
-	ava.sin_port = htons(3948);
 	int bugi = sizeof(sockaddr_in);
-	otBoi = accept(boi,(sockaddr*)&ava,(socklen_t*)&bugi);
+	otBoi = accept(boi,(sockaddr*)&kono,(socklen_t*)&bugi);
 	if (otBoi==INVALID_SOCKET)
 	{
 		cout << "not accepting dummos";
@@ -72,6 +68,11 @@ int main()
 	{
 		cout << "welcome to the club";
 	}
-	send(otBoi, "im so cool yeaaa",17,0 );
+	char buffer[1024];
+	while (true)
+	{
+		cin >> buffer;
+	 send(otBoi, buffer,1024,0 ); 
+	}
 	WSACleanup();
 }
